@@ -1,7 +1,7 @@
 const ListManufacturers = ({ manufacturers }) => {
     return (
-        <div>
-            <table>
+        <div className="container">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Manufacturer</th>

@@ -20,8 +20,8 @@ const ListVehicles = () => {
         return null;
     } else {
         return (
-            <div>
-            <table>
+        <div className="container">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Vehicle Models</th>

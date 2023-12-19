@@ -7,11 +7,13 @@ import { useEffect, useState } from 'react';
 import ListManufacturers from './inventory/ListManufacturers';
 import ListVehicles from './inventory/ListVehicleModels';
 import AutomobileForm from './inventory/AddToInvetory';
+import ListInventory from './inventory/ListInventory';
 
 
 function App() {
   const [manufacturers, setManufacturers] = useState([]);
   const [models, setModels] = useState([]);
+  const [inventory, setInventory] = useState([]);
 
   const getManufacturers = async () => {
       const makesUrl = "http://localhost:8100/api/manufacturers/"
@@ -31,9 +33,19 @@ function App() {
     }
   }
 
+  const getInventory = async () => {
+    const inventoryUrl = "http://localhost:8100/api/automobiles";
+    const response = await fetch(inventoryUrl);
+    if (response.ok) {
+      const data = await response.json();
+      setInventory(data.autos);
+    }
+  }
+
   useEffect(() => {
     getManufacturers();
     getVehicleModels();
+    getInventory();
   }, [])
   return (
     <BrowserRouter>
@@ -42,7 +54,8 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="inventory">
-            <Route path="add" element={<AutomobileForm models={models}/>} />
+            <Route index element={<ListInventory inventory={inventory}/>} />
+            <Route path="add" element={<AutomobileForm models={models} getInventory={getInventory}/>} />
             <Route path="manufacturers">
               <Route index element={<ListManufacturers manufacturers={manufacturers}/>} />
               <Route path="add" element={<CreateManufacturer getManufacturers={getManufacturers}/>} />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AutomobileForm = ({ models }) => {
+const AutomobileForm = ({ models, getInventory }) => {
     const [formChange, setFormChange] = useState({
         "color": '',
         "year": '',
@@ -40,6 +40,7 @@ const AutomobileForm = ({ models }) => {
                 "vin": '',
                 "modelId": ''
             })
+            getInventory();
         }
 
     }

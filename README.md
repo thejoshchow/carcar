@@ -13,7 +13,7 @@ Team:
    - [x] create manufacture
    - [x] list of vehicle models
    - [x] create vehicle model
-   - [] list of automobiles in inventory
+   - [x] list of automobiles in inventory
    - [x] add vehicle to inventory
 
 ## inventory microservice
