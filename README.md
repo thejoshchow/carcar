@@ -8,7 +8,8 @@ Team:
 ## Design
 
 1. inventory
-   react components
+
+   - react component
 
    - [x] list of manufacturers
    - [x] create manufacture
@@ -17,13 +18,18 @@ Team:
    - [x] list of automobiles in inventory
    - [x] add vehicle to inventory
 
+--
+
 2. service
 
    - create models
-     - [] technician model
-     - [] autoVO
-     - [] appointment model
+
+     - [x] technician model
+     - [x] autoVO
+     - [x] appointment model
+
    - create api endpoints
+
      - [] list techs
      - [] create tech
      - [] delete tech
@@ -32,7 +38,9 @@ Team:
      - [] delete appt
      - [] set appt status to cancelled
      - [] set appt status to finished
-   - auto poller
+
+   - [x] auto poller
+
    - create react components
      - [] add a tech
      - [] list all techs (employee id, name)
@@ -50,6 +58,8 @@ Team:
 api endpoints accessible at http://localhost:8100
 
 ## Service microservice
+
+api endpoinst accessible at http://localhost:8080
 
 Explain your models and integration with the inventory
 microservice, here.
