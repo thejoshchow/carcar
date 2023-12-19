@@ -22,17 +22,17 @@ Team:
 
 2. service
 
-   - create models
+   - [x] create models
 
      - [x] technician model
      - [x] autoVO
      - [x] appointment model
 
-   - create api endpoints
+   - [] create api endpoints
 
      - [x] list techs
      - [x] create tech
-     - [] delete tech
+     - [x] delete tech
      - [] list appts
      - [] create appt
      - [] delete appt
@@ -41,7 +41,7 @@ Team:
 
    - [x] auto poller
 
-   - create react components
+   - [] create react components
      - [] add a tech
      - [] list all techs (employee id, name)
      - [] create service appt

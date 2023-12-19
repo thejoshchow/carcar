@@ -33,3 +33,15 @@ def list_techs(request):
             ListTechEncoder,
             False,
         )
+
+
+@require_http_methods("DELETE")
+def delete_tech(request, pk):
+    try:
+        count, _ = Technician.objects.get(employee_id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
+    except Technician.DoesNotExist:
+        return JsonResponse(
+            {"message": "Technician not in records"},
+            status=400,
+        )
