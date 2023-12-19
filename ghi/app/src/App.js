@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
 import CreateManufacturer from './inventory/CreateManufacturer';
+import VehicleModelForm from './inventory/VehicleModelForm';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
           <Route path="inventory">
             <Route path="manufacturers">
               <Route path="add" element={<CreateManufacturer />} />
+            </Route>
+            <Route path="models">
+              <Route path="add" element={<VehicleModelForm />} />
             </Route>
           </Route>
         </Routes>

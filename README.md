@@ -8,11 +8,11 @@ Team:
 ## Design
 
 1. inventory
-   - [] react components
+   - react components
    - [] list of manufacturers
    - [x] create manufacture
    - [] list of vehicle models
-   - [] create vehicle model
+   - [x] create vehicle model
    - [] list of automobiles in inventory
    - [] add vehicle to inventory
 
