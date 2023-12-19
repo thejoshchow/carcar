@@ -7,7 +7,7 @@ from common.json import ModelEncoder
 from .models import AutoVO, Technician, Appointment
 
 
-class ListTechEncoder(ModelEncoder):
+class TechEncoder(ModelEncoder):
     model = Technician
     properties = [
         "first_name",
@@ -16,13 +16,33 @@ class ListTechEncoder(ModelEncoder):
     ]
 
 
+class ApptEncoder(ModelEncoder):
+    model = Appointment
+    properties = [
+        "id",
+        "date_time",
+        "reason",
+        "status",
+        "vin",
+        "customer",
+    ]
+
+    def get_extra_data(self, o):
+        return {
+            "technician": {
+                "name": f"{o.technician.first_name} {o.technician.last_name}",
+                "employee_id": o.technician.employee_id,
+            }
+        }
+
+
 @require_http_methods(["GET", "POST"])
 def list_techs(request):
     if request.method == "GET":
         techs = Technician.objects.all()
         return JsonResponse(
             {"technicians": techs},
-            ListTechEncoder,
+            TechEncoder,
             False,
         )
     else:
@@ -30,7 +50,7 @@ def list_techs(request):
         tech = Technician.objects.create(**content)
         return JsonResponse(
             tech,
-            ListTechEncoder,
+            TechEncoder,
             False,
         )
 
@@ -45,3 +65,69 @@ def delete_tech(request, pk):
             {"message": "Technician not in records"},
             status=400,
         )
+
+
+@require_http_methods(["GET", "POST"])
+def list_appts(request):
+    if request.method == "GET":
+        appts = Appointment.objects.all()
+        return JsonResponse(
+            {"appointments": appts},
+            ApptEncoder,
+            False,
+        )
+    else:
+        content = json.loads(request.body)
+        tech = content["technician"]
+        try:
+            content["technician"] = Technician.objects.get(employee_id=tech)
+        except Technician.DoesNotExist:
+            return JsonResponse(
+                {"message": "Technician not in records"},
+                status=400,
+            )
+        appt = Appointment.objects.create(**content)
+        return JsonResponse(
+            {"appointment": appt},
+            ApptEncoder,
+            False,
+        )
+
+
+@require_http_methods(["GET", "DELETE"])
+def appt_detail(request, pk):
+    if request.method == "GET":
+        appt = Appointment.objects.get(id=pk)
+        return JsonResponse(
+            {"appointment": appt},
+            ApptEncoder,
+            False,
+        )
+    else:
+        count, _ = Appointment.objects.filter(id=pk).delete()
+        return JsonResponse(
+            {"deleted": count > 0},
+        )
+
+
+@require_http_methods(["PUT"])
+def cancel_appt(request, pk):
+    Appointment.objects.filter(id=pk).update(status="cancelled")
+    appt = Appointment.objects.get(id=pk)
+    return JsonResponse(
+        {"appointment": appt},
+        ApptEncoder,
+        False,
+    )
+
+
+@require_http_methods(["PUT"])
+def finish_appt(request, pk):
+    Appointment.objects.filter(id=pk).update(status="finished")
+    appt = Appointment.objects.get(id=pk)
+    return JsonResponse(
+        {"appointment": appt},
+        ApptEncoder,
+        False,
+        status=200,
+    )

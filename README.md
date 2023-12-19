@@ -33,11 +33,11 @@ Team:
      - [x] list techs
      - [x] create tech
      - [x] delete tech
-     - [] list appts
-     - [] create appt
-     - [] delete appt
-     - [] set appt status to cancelled
-     - [] set appt status to finished
+     - [x] list appts
+     - [x] create appt
+     - [x] delete appt
+     - [x] set appt status to cancelled
+     - [x] set appt status to finished
 
    - [x] auto poller
 

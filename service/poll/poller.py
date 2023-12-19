@@ -31,8 +31,6 @@ def poll(repeat=True):
         print("Service poller polling for data")
         try:
             get_autos()
-            print("SERVICE POLLING SUCCESSFUL")
-
         except Exception as e:
             print(e, file=sys.stderr)
 

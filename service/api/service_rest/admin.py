@@ -16,4 +16,7 @@ class TechnicianAdmin(admin.ModelAdmin):
 
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        "reason",
+        "date_time",
+    ]
