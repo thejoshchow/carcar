@@ -14,7 +14,7 @@ Team:
    - [x] list of vehicle models
    - [x] create vehicle model
    - [] list of automobiles in inventory
-   - [] add vehicle to inventory
+   - [x] add vehicle to inventory
 
 ## inventory microservice
 
