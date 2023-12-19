@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const VehicleModelForm = ({ manufacturers }) => {
+const VehicleModelForm = ({ manufacturers, getVehicleModels }) => {
     const [added, setAdded] = useState(false);
     const [formChange, setFormChange] = useState({
         "name": '',
@@ -35,15 +35,13 @@ const VehicleModelForm = ({ manufacturers }) => {
 
         const response = await fetch(addVehicleModel, fetchOptions);
         if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-
             setFormChange({
                 "name": '',
                 "pictureUrl": '',
                 "make": '',
             })
             setAdded(true);
+            getVehicleModels();
         }
 
     }

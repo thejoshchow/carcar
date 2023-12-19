@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CreateManufacturer = () => {
+const CreateManufacturer = ({ getManufacturers }) => {
     const [make, setMake] = useState('');
     const [added, setAdded] = useState(false);
     
@@ -25,8 +25,8 @@ const CreateManufacturer = () => {
 
         const response = await fetch(createManfacturerUrl, fetchOptions);
         if (response.ok) {
-            const data = await response.json();
             setAdded(true);
+            getManufacturers();
         }
     }
 

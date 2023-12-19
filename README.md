@@ -9,9 +9,9 @@ Team:
 
 1. inventory
    - react components
-   - [] list of manufacturers
+   - [x] list of manufacturers
    - [x] create manufacture
-   - [] list of vehicle models
+   - [x] list of vehicle models
    - [x] create vehicle model
    - [] list of automobiles in inventory
    - [] add vehicle to inventory
