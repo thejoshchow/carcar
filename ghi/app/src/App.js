@@ -6,6 +6,7 @@ import VehicleModelForm from './inventory/VehicleModelForm';
 import { useEffect, useState } from 'react';
 import ListManufacturers from './inventory/ListManufacturers';
 import ListVehicles from './inventory/ListVehicleModels';
+import AutomobileForm from './inventory/AddToInvetory';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="inventory">
+            <Route path="add" element={<AutomobileForm models={models}/>} />
             <Route path="manufacturers">
               <Route index element={<ListManufacturers manufacturers={manufacturers}/>} />
               <Route path="add" element={<CreateManufacturer getManufacturers={getManufacturers}/>} />
@@ -48,7 +50,7 @@ function App() {
             <Route path="models">
               <Route index element={<ListVehicles />} />
               <Route path="add" element={<VehicleModelForm manufacturers={manufacturers} getVehicleModels={getVehicleModels}/>} />
-            </Route>
+          </Route>
           </Route>
         </Routes>
       </div>
