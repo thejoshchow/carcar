@@ -38,12 +38,16 @@ const CreateManufacturer = ({ getManufacturers }) => {
     }
 
     return (
-        <div>
+        <div className="offset-3 col-6">
             <h1>Add a make:</h1>
-            <div>
+            <div className="container">
                 <form className={formClasses} onSubmit={handleSubmit}>
-                    <input onChange={changeMake} value={make} name="manufacturer" type="text" />
-                    <button type="submit">Add</button>
+                    <div className="mb-3">
+                        <input onChange={changeMake} value={make} className="form-control" name="manufacturer" type="text" placeholder="Make"/>
+                    </div>
+                    <div className="mb-3">
+                        <button className="btn btn-primary" type="submit">Add</button>
+                    </div>
                 </form>
                 <div className={messageClasses} id="success-message">
                     Vehicle model added

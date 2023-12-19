@@ -56,23 +56,29 @@ const VehicleModelForm = ({ manufacturers, getVehicleModels }) => {
         }
         return (
             <>
-            <div className={added ? "invisible" : ""}>
-                <h1>Add a make:</h1>
+            <div className="offset-3 col-6">
+                <h1 className="mb-3">Add a make:</h1>
                 <div>
                     <div className="row">
                         <div className="col">
                             <form className={formClasses} onSubmit={handleSubmit} id="create-vehicle-model-form">
-                                <input onChange={handleFormChange} value={formChange.name} className="form-control" type="text" name="name" placeholder="Model name"></input>
-                                <input onChange={handleFormChange} value={formChange.pictureUrl} className="form-control" type="url" name="pictureUrl" placeholder="Picture Url"></input>
-                                <select className="form-control" onChange={handleFormChange} name="make">
+                                <div className="mb-3">
+                                    <select className="form-control" onChange={handleFormChange} name="make">
                                     <option value=''>Select a make:</option>
                                     {manufacturers.map((make) => {
                                         return (
                                             <option key={make.id} value={make.id}>{make.name}</option>
                                             )
                                         })}
-                                </select>
-                                <button type="submit">Create model</button>
+                                    </select>
+                                </div>
+                                <div className="mb-3">
+                                    <input onChange={handleFormChange} value={formChange.name} className="form-control" type="text" name="name" placeholder="Model name"></input>
+                                </div>
+                                <div className="mb-3">
+                                    <input onChange={handleFormChange} value={formChange.pictureUrl} className="form-control" type="url" name="pictureUrl" placeholder="Picture Url"></input>
+                                </div>
+                                <button className="btn btn-primary" type="submit">Create model</button>
                             </form>
                         </div>
                     </div>

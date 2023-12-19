@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const AutomobileForm = ({ models, getInventory }) => {
+    const [added, setAdded] = useState(false);
     const [formChange, setFormChange] = useState({
         "color": '',
         "year": '',
@@ -41,28 +42,46 @@ const AutomobileForm = ({ models, getInventory }) => {
                 "modelId": ''
             })
             getInventory();
+            setAdded(true);
         }
 
     }
 
+    let messageClasses = 'alert alert-success d-none mb-0';
+    let formClasses = '';
+    if (added) {
+        messageClasses = 'alert alert-success mb-0';
+        formClasses = 'd-none';
+    }
+
     return (
-        <div className="">
-            <h1>Add to inventory</h1>
-            <form onSubmit={handleSubmit}>
-                <input onChange={handleFormChange} value={formChange.color} className="form-control" type="text" placeholder="Color" name="color"></input>
-                <input onChange={handleFormChange} value={formChange.year} className="form-control" type="number" placeholder="Year" name="year"></input>
-                <input onChange={handleFormChange} value={formChange.vin} className="form-control" type="text" placeholder="VIN" name="vin"></input>
-                <select onChange={handleFormChange} value={formChange.modelId} className="form-control" name="modelId">
-                    <option value=''>Vehicle model</option>
-                    {models.map((model) => {
-                        return (
-                            <option value={model.id} key={model.id}>{model.manufacturer.name} {model.name}</option>
-                        )
-                    })}
-                </select>
+        <div className="offset-3 col-6">
+            <h1 className="mb-3">Add to inventory</h1>
+            <form className={formClasses} onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <input onChange={handleFormChange} value={formChange.color} className="form-control" type="text" placeholder="Color" name="color"></input>
+                </div>
+                <div className="mb-3">
+                    <input onChange={handleFormChange} value={formChange.year} className="form-control" type="number" placeholder="Year" name="year"></input>
+                </div>
+                <div className="mb-3">
+                    <input onChange={handleFormChange} value={formChange.vin} className="form-control" type="text" placeholder="VIN" name="vin"></input>
+                </div>
+                <div className="mb-3">
+                    <select onChange={handleFormChange} value={formChange.modelId} className="form-control" name="modelId">
+                        <option value=''>Vehicle model</option>
+                        {models.map((model) => {
+                            return (
+                                <option value={model.id} key={model.id}>{model.manufacturer.name} {model.name}</option>
+                                )
+                            })}
+                    </select>
+                </div>
                 <button className="btn btn-primary" type="submit">Add automobile</button>
             </form>
-
+            <div className={messageClasses} id="success-message">
+                    Manufacturer added
+            </div>
         </div>
     )
 }

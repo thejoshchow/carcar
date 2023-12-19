@@ -1,7 +1,7 @@
 const ListInventory = ({ inventory }) => {
     return (
         <div className="container">
-            <table class="table table-striped">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Vin</th>
@@ -15,7 +15,7 @@ const ListInventory = ({ inventory }) => {
                 <tbody>
                     {inventory.map((auto) => {
                         return (
-                        <tr>
+                        <tr key={auto.id}>
                             <td>{auto.vin}</td>
                             <td>{auto.model.manufacturer.name}</td>
                             <td>{auto.model.name}</td>

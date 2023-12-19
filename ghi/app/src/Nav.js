@@ -11,11 +11,11 @@ function Nav() {
             Inventory
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><Link className="dropdown-item" to="/inventory">Inventory</Link></li>
+            <li><Link className="dropdown-item" to="/inventory"><b>Inventory</b></Link></li>
             <li><Link className="dropdown-item" to="/inventory/add"> -- Add to inventory</Link></li>
-            <li><Link className="dropdown-item" to="/inventory/manufacturers">Manufacturers</Link></li>
+            <li><Link className="dropdown-item" to="/inventory/manufacturers"><b>Manufacturers</b></Link></li>
             <li><Link className="dropdown-item" to="/inventory/manufacturers/add"> -- Add make</Link></li>
-            <li><Link className="dropdown-item" to="/inventory/models/">Models</Link></li>
+            <li><Link className="dropdown-item" to="/inventory/models/"><b>Models</b></Link></li>
             <li><Link className="dropdown-item" to="/inventory/models/add"> -- Add vehicle model</Link></li>
           </ul>
         </div>

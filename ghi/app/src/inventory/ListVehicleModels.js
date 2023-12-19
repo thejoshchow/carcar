@@ -24,14 +24,17 @@ const ListVehicles = () => {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Vehicle Models</th>
+                        <th>Make</th>
+                        <th>Vehicle Model</th>
                     </tr>
                 </thead>
                 <tbody>
                     {models.models.map((model) => {
                         return (
                             <tr key={model.id}>
+                                <td>{model.manufacturer.name}</td>
                                 <td>{model.name}</td>
+                                <td><img src={model.picture_url} alt={model.name} style={{height: "150px"}}></img></td>
                             </tr>
                         )
                     })}
