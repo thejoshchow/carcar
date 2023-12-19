@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
 
 from common.json import ModelEncoder
-from .models import AutoVO, Technician, Appointment
+from .models import Technician, Appointment
 
 
 class TechEncoder(ModelEncoder):
@@ -56,9 +55,9 @@ def list_techs(request):
 
 
 @require_http_methods("DELETE")
-def delete_tech(request, pk):
+def delete_tech(request, id):
     try:
-        count, _ = Technician.objects.get(employee_id=pk).delete()
+        count, _ = Technician.objects.get(employee_id=id).delete()
         return JsonResponse({"deleted": count > 0})
     except Technician.DoesNotExist:
         return JsonResponse(
@@ -78,6 +77,7 @@ def list_appts(request):
         )
     else:
         content = json.loads(request.body)
+        content["status"] = "scheduled"
         tech = content["technician"]
         try:
             content["technician"] = Technician.objects.get(employee_id=tech)

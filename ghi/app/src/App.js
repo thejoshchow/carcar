@@ -8,6 +8,7 @@ import ListManufacturers from './inventory/ListManufacturers';
 import ListVehicles from './inventory/ListVehicleModels';
 import AutomobileForm from './inventory/AddToInvetory';
 import ListInventory from './inventory/ListInventory';
+import TechnicianForm from './service/TechnicianForm';
 
 
 function App() {
@@ -53,18 +54,26 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="inventory">
-            <Route index element={<ListInventory inventory={inventory}/>} />
-            <Route path="add" element={<AutomobileForm models={models} getInventory={getInventory}/>} />
-            <Route path="manufacturers">
-              <Route index element={<ListManufacturers manufacturers={manufacturers}/>} />
-              <Route path="add" element={<CreateManufacturer getManufacturers={getManufacturers}/>} />
+
+            <Route path="inventory">
+                <Route index element={<ListInventory inventory={inventory}/>} />
+                <Route path="add" element={<AutomobileForm models={models} getInventory={getInventory}/>} />
+              <Route path="manufacturers">
+                <Route index element={<ListManufacturers manufacturers={manufacturers}/>} />
+                <Route path="add" element={<CreateManufacturer getManufacturers={getManufacturers}/>} />
+              </Route>
+              <Route path="models">
+                <Route index element={<ListVehicles />} />
+                <Route path="add" element={<VehicleModelForm manufacturers={manufacturers} getVehicleModels={getVehicleModels}/>} />
+              </Route>
             </Route>
-            <Route path="models">
-              <Route index element={<ListVehicles />} />
-              <Route path="add" element={<VehicleModelForm manufacturers={manufacturers} getVehicleModels={getVehicleModels}/>} />
-          </Route>
-          </Route>
+
+            <Route path="service">
+              <Route path="technicians">
+                <Route path="add" element={<TechnicianForm />} />
+              </Route>
+            </Route>
+
         </Routes>
       </div>
     </BrowserRouter>

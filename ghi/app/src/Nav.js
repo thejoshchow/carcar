@@ -25,6 +25,7 @@ function Nav() {
             Service
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><Link className="dropdown-item" to="/service/technicians/add"> -- Add technician</Link></li>
           </ul>
         </div>
 
