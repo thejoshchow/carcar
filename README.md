@@ -30,8 +30,8 @@ Team:
 
    - create api endpoints
 
-     - [] list techs
-     - [] create tech
+     - [x] list techs
+     - [x] create tech
      - [] delete tech
      - [] list appts
      - [] create appt
