@@ -11,8 +11,25 @@ function Nav() {
             Inventory
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><NavLink className="dropdown-item" to="/inventory/manufacturers">Manufacturers</NavLink></li>
             <li><NavLink className="dropdown-item" to="/inventory/manufacturers/add">Add make</NavLink></li>
             <li><NavLink className="dropdown-item" to="/inventory/models/add">Add vehicle model</NavLink></li>
+          </ul>
+        </div>
+
+        <div className="dropdown">
+          <button className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Service
+          </button>
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          </ul>
+        </div>
+
+        <div className="dropdown">
+          <button className="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Sales
+          </button>
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           </ul>
         </div>
         

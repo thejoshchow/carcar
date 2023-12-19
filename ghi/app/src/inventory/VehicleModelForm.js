@@ -1,25 +1,12 @@
 import { useEffect, useState } from "react";
 
-const VehicleModelForm = () => {
-    const [makes, setMakes] = useState({});
+const VehicleModelForm = ({ manufacturers }) => {
+    const [added, setAdded] = useState(false);
     const [formChange, setFormChange] = useState({
         "name": '',
         "pictureUrl": '',
         "make": '',
-    })
-
-    const getData = async () => {
-        const makesUrl = "http://localhost:8100/api/manufacturers/"
-        const response = await fetch(makesUrl);
-        if (response.ok) {
-            const data = await response.json();
-            setMakes(data);
-        }
-    }
-
-    useEffect(() => {
-        getData();
-    }, [])
+    });
 
     
     const handleFormChange = (e) => {
@@ -56,23 +43,32 @@ const VehicleModelForm = () => {
                 "pictureUrl": '',
                 "make": '',
             })
+            setAdded(true);
         }
+
     }
-    if (makes.manufacturers === undefined) {
+    if (manufacturers === undefined) {
         return null;
     } else {
+        let messageClasses = 'alert alert-success d-none mb-0';
+        let formClasses = '';
+        if (added) {
+            messageClasses = 'alert alert-success mb-0';
+            formClasses = 'd-none';
+        }
         return (
-            <div>
+            <>
+            <div className={added ? "invisible" : ""}>
                 <h1>Add a make:</h1>
                 <div>
                     <div className="row">
                         <div className="col">
-                            <form onSubmit={handleSubmit}>
+                            <form className={formClasses} onSubmit={handleSubmit} id="create-vehicle-model-form">
                                 <input onChange={handleFormChange} value={formChange.name} className="form-control" type="text" name="name" placeholder="Model name"></input>
                                 <input onChange={handleFormChange} value={formChange.pictureUrl} className="form-control" type="url" name="pictureUrl" placeholder="Picture Url"></input>
                                 <select className="form-control" onChange={handleFormChange} name="make">
                                     <option value=''>Select a make:</option>
-                                    {makes.manufacturers.map((make) => {
+                                    {manufacturers.map((make) => {
                                         return (
                                             <option key={make.id} value={make.id}>{make.name}</option>
                                             )
@@ -84,6 +80,10 @@ const VehicleModelForm = () => {
                     </div>
                 </div>
             </div>
+            <div className={messageClasses} id="success-message">
+                Vehicle model added
+            </div>
+            </>
         );
     }
 }
