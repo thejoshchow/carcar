@@ -3,7 +3,7 @@ from django.views.decorators.http import require_http_methods
 import json
 
 from common.json import ModelEncoder
-from .models import Technician, Appointment
+from .models import AutoVO, Technician, Appointment
 
 
 class TechEncoder(ModelEncoder):
@@ -24,6 +24,7 @@ class ApptEncoder(ModelEncoder):
         "status",
         "vin",
         "customer",
+        "vip",
     ]
 
     def get_extra_data(self, o):
@@ -97,6 +98,8 @@ def list_scheduled_appts(request):
                 {"message": "Technician not in records"},
                 status=400,
             )
+        if len(AutoVO.objects.filter(vin=content["vin"])) > 0:
+            content["vip"] = True
         appt = Appointment.objects.create(**content)
         return JsonResponse(
             {"appointment": appt},

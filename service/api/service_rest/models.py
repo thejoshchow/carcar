@@ -26,6 +26,7 @@ class Technician(models.Model):
 
 
 class Appointment(models.Model):
+    vip = models.BooleanField(default=False, null=True)
     date_time = models.DateTimeField()
     reason = models.TextField()
     status = models.CharField(max_length=20, choices=choices, default="scheduled")

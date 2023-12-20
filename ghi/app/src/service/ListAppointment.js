@@ -14,7 +14,7 @@ const ListAppointments = ({ getAppts }) => {
     }, [])
 
     const handleCancel = (e, value) => {
-        console.log(e.target.value)
+        
     }
 
     const handleComplete = async (e) => {
@@ -26,7 +26,6 @@ const ListAppointments = ({ getAppts }) => {
         const response = await fetch(completeUrl, fetchOptions);
         if (response.ok) {
             getData();
-            console.log(response + "moved")
         }
     }
 
@@ -36,6 +35,7 @@ const ListAppointments = ({ getAppts }) => {
             <table className="table table-striped">
                 <thead>
                     <tr>
+                        <th>VIP</th>
                         <th>VIN</th>
                         <th>Customer Name</th>
                         <th>Date</th>
@@ -49,6 +49,7 @@ const ListAppointments = ({ getAppts }) => {
                     {appts.map(appt => {
                         return (
                             <tr key={appt.id}>
+                                <td>{appt.vip ? "✔" : ''}</td>
                                 <td>{appt.vin}</td>
                                 <td>{appt.customer}</td>
                                 <td>{new Date(appt.date_time).toLocaleDateString()}</td>
@@ -57,6 +58,7 @@ const ListAppointments = ({ getAppts }) => {
                                 <td>{appt.technician.name}</td>
                                 <td>
                                     <button onClick={handleCancel} value={appt.id} type="button" className="btn btn-danger" style={{marginRight: "10px"}}>Cancel</button>
+                                    
                                     <button onClick={handleComplete} value={appt.id} type="button" className="btn btn-success">Complete</button>
                                 </td>
                             </tr>
