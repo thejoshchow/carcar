@@ -9,7 +9,10 @@ import ListVehicles from './inventory/ListVehicleModels';
 import AutomobileForm from './inventory/AddToInvetory';
 import ListInventory from './inventory/ListInventory';
 import TechnicianForm from './service/TechnicianForm';
-import ListTechs from './service/ListTechnicians';
+import ListTechnicians from './service/ListTechnicians';
+import AppointmentForm from './service/AppointmentForm';
+import ListAppointments from './service/ListAppointment';
+import ServiceHistory from './service/ServiceHistory';
 
 
 function App() {
@@ -17,6 +20,7 @@ function App() {
   const [models, setModels] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [techs, setTechs] = useState([]);
+  const [appts, setAppts] = useState([]);
 
   const getManufacturers = async () => {
       const makesUrl = "http://localhost:8100/api/manufacturers/"
@@ -82,8 +86,13 @@ function App() {
 
             <Route path="service">
               <Route path="technicians">
-                <Route index element={<ListTechs techs={techs} />}/>
-                <Route path="add" element={<TechnicianForm />} />
+                <Route index element={<ListTechnicians techs={techs} />}/>
+                <Route path="add" element={<TechnicianForm getTechs={getTechnicians} />} />
+              </Route>
+              <Route path="appointments">
+                <Route index element={<ListAppointments />} />
+                <Route path="add" element={<AppointmentForm techs={techs} />} />
+                <Route path="history" element={<ServiceHistory />} />
               </Route>
             </Route>
 

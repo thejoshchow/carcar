@@ -1,4 +1,4 @@
-const ListTechs = ({ techs }) => {
+const ListTechnicians = ({ techs }) => {
     return (
         <div className="container">
             <table className="table table-striped">
@@ -23,4 +23,4 @@ const ListTechs = ({ techs }) => {
     );
 }
 
-export default ListTechs;
+export default ListTechnicians;

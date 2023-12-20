@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TechnicianForm = () => {
+const TechnicianForm = ({ getTechs }) => {
     const [added, setAdded] = useState(false);
     const [formChange, setFormChange] = useState({
         "firstName": '',
@@ -35,6 +35,7 @@ const TechnicianForm = () => {
         const response = await fetch(techUrl, fetchOptions);
         if (response.ok) {
             setAdded(true); 
+            getTechs();
         }
     }
 

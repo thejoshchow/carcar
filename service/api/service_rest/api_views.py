@@ -94,6 +94,16 @@ def list_appts(request):
         )
 
 
+@require_http_methods(["GET"])
+def list_scheduled_appts(requset):
+    appts = Appointment.objects.filter(status="scheduled")
+    return JsonResponse(
+        {"appointments": appts},
+        ApptEncoder,
+        False,
+    )
+
+
 @require_http_methods(["GET", "DELETE"])
 def appt_detail(request, pk):
     if request.method == "GET":

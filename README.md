@@ -41,12 +41,12 @@ Team:
 
    - [x] auto poller
 
-   - [] create react components
-     - [] add a tech
-     - [] list all techs (employee id, name)
-     - [] create service appt
-     - [] list all appts (vin, customer name, date, time of appt)
-     - [] service history
+   - [x] create react components
+     - [x] add a tech
+     - [x] list all techs (employee id, name)
+     - [x] create service appt
+     - [x] list all appts (vin, customer name, date, time of appt)
+     - [x] service history
 
 3. sales
    - create models
