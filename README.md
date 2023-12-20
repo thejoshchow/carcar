@@ -47,6 +47,7 @@ Team:
      - [x] create service appt
      - [x] list all appts (vin, customer name, date, time of appt)
      - [x] service history
+     - _todo: client or server-side filtering more appropriate? currently filtering server-side. makes more sense, resource-wise, to not send all data indiscriminately_
 
 3. sales
    - create models
