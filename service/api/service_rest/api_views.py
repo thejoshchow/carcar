@@ -70,7 +70,7 @@ def delete_tech(request, id):
 @require_http_methods(["GET"])
 def list_appt_history(request):
     if request.method == "GET":
-        appts = Appointment.objects.all()
+        appts = Appointment.objects.exclude(status="scheduled")
         return JsonResponse(
             {"appointments": appts},
             ApptEncoder,
