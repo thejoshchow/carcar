@@ -4,6 +4,8 @@ from .api_views import (
     delete_salesrep,
     list_customers,
     delete_customer,
+    list_sales,
+    delete_sale,
 )
 
 urlpatterns = [
@@ -11,4 +13,6 @@ urlpatterns = [
     path("salesreps/<str:pk>/", delete_salesrep),
     path("customers/", list_customers),
     path("customers/<int:pk>/", delete_customer),
+    path("sales/", list_sales),
+    path("sales/<int:pk>", delete_sale),
 ]

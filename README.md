@@ -79,9 +79,9 @@ api endpoint accessible at http://localhost:8090
   - [x] list customers
   - [x] create customer
   - [x] delete customer
-  - [ ] list sales
-  - [ ] create sale
-  - [ ] delete sale
+  - [x] list sales
+  - [x] create sale
+  - [x] delete sale
 
 - [x] auto poller
 
