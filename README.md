@@ -28,7 +28,7 @@ Team:
      - [x] autoVO
      - [x] appointment model
 
-   - [] create api endpoints
+   - [x] create api endpoints
 
      - [x] list techs
      - [x] create tech
