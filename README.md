@@ -24,7 +24,9 @@ api endpoints accessible at http://localhost:8100
 
 ## Service microservice
 
-todo: adjust api delete functions so that they actually return 400 status if invalid ids
+todo:
+
+- [x] adjust api delete functions so that they actually return 400 status if invalid ids
 
 api endpoinst accessible at http://localhost:8080
 

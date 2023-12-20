@@ -58,7 +58,8 @@ def list_techs(request):
 @require_http_methods("DELETE")
 def delete_tech(request, id):
     try:
-        count, _ = Technician.objects.get(employee_id=id).delete()
+        delete = Technician.objects.get(employee_id=id)
+        count, _ = delete.delete()
         return JsonResponse({"deleted": count > 0})
     except Technician.DoesNotExist:
         return JsonResponse(
@@ -118,10 +119,17 @@ def appt_detail(request, pk):
             False,
         )
     elif request.method == "DELETE":
-        count, _ = Appointment.objects.filter(id=pk).delete()
-        return JsonResponse(
-            {"deleted": count > 0},
-        )
+        try:
+            delete = Appointment.objects.filter(id=pk)
+            count, _ = delete.delete()
+            return JsonResponse(
+                {"deleted": count > 0},
+            )
+        except Appointment.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid appointment id"},
+                status=400,
+            )
     else:
         content = json.loads(request.body)
         appt = Appointment.objects.filter(id=pk).update(**content)
