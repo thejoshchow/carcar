@@ -72,7 +72,7 @@ Team:
      - [ ] create sale
      - [ ] delete sale
 
-   - [ ] auto poller
+   - [x] auto poller
 
    - [ ] create react components
 

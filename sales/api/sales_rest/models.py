@@ -21,7 +21,10 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     address = models.TextField()
-    phone_number = PhoneNumberField(max_length=10, region="US")
+    phone_number = PhoneNumberField(region="US")
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 class Sale(models.Model):
@@ -40,3 +43,7 @@ class Sale(models.Model):
         related_name="sales",
         on_delete=models.PROTECT,
     )
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self):
+        return self.auto.vin

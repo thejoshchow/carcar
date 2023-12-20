@@ -37,7 +37,6 @@ const AppointmentForm = ({ techs, getAppts }) => {
             }
         }
 
-        console.log(d)
         const response = await fetch(apptUrl, fetchOptions);
         if (response.ok) {
             setAdded(true);
