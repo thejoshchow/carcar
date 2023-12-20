@@ -24,6 +24,8 @@ api endpoints accessible at http://localhost:8100
 
 ## Service microservice
 
+todo: adjust api delete functions so that they actually return 400 status if invalid ids
+
 api endpoinst accessible at http://localhost:8080
 
 - [x] create models
@@ -74,9 +76,9 @@ api endpoint accessible at http://localhost:8090
   - [x] list salespeople
   - [x] create salesperson
   - [x] delete salesperson
-  - [ ] list customers
-  - [ ] create customer
-  - [ ] delete customer
+  - [x] list customers
+  - [x] create customer
+  - [x] delete customer
   - [ ] list sales
   - [ ] create sale
   - [ ] delete sale

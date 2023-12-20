@@ -2,6 +2,7 @@ from json import JSONEncoder
 from django.urls import NoReverseMatch
 from django.db.models import QuerySet
 from datetime import datetime, date
+from phonenumber_field.phonenumber import PhoneNumber
 
 
 class DateEncoder(JSONEncoder):
@@ -20,7 +21,15 @@ class QuerySetEncoder(JSONEncoder):
             return super().default(o)
 
 
-class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
+class PhoneNumberEncoder(JSONEncoder):
+    def default(self, o):
+        if isinstance(o, PhoneNumber):
+            return o.as_national
+        else:
+            return super().default(o)
+
+
+class ModelEncoder(PhoneNumberEncoder, DateEncoder, QuerySetEncoder, JSONEncoder):
     encoders = {}
 
     def default(self, o):
