@@ -53,12 +53,12 @@ Team:
 
 3. sales
 
-   - [ ] create models
+   - [x] create models
 
-     - [ ] salesperson
-     - [ ] customer
-     - [ ] sale
-     - [ ] autoVO
+     - [x] salesperson
+     - [x] customer
+     - [x] sale
+     - [x] autoVO
 
    - [ ] create api endpoints
 
@@ -96,6 +96,8 @@ Explain your models and integration with the inventory
 microservice, here.
 
 ## Sales microservice
+
+api endpoint accessible at http://localhost:8090
 
 Explain your models and integration with the inventory
 microservice, here.
