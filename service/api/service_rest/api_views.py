@@ -66,10 +66,21 @@ def delete_tech(request, id):
         )
 
 
-@require_http_methods(["GET", "POST"])
-def list_appts(request):
+@require_http_methods(["GET"])
+def list_appt_history(request):
     if request.method == "GET":
         appts = Appointment.objects.all()
+        return JsonResponse(
+            {"appointments": appts},
+            ApptEncoder,
+            False,
+        )
+
+
+@require_http_methods(["GET", "POST"])
+def list_scheduled_appts(request):
+    if request.method == "GET":
+        appts = Appointment.objects.filter(status="scheduled")
         return JsonResponse(
             {"appointments": appts},
             ApptEncoder,
@@ -94,17 +105,7 @@ def list_appts(request):
         )
 
 
-@require_http_methods(["GET"])
-def list_scheduled_appts(requset):
-    appts = Appointment.objects.filter(status="scheduled")
-    return JsonResponse(
-        {"appointments": appts},
-        ApptEncoder,
-        False,
-    )
-
-
-@require_http_methods(["GET", "DELETE"])
+@require_http_methods(["GET", "DELETE", "PUT"])
 def appt_detail(request, pk):
     if request.method == "GET":
         appt = Appointment.objects.get(id=pk)
@@ -113,10 +114,18 @@ def appt_detail(request, pk):
             ApptEncoder,
             False,
         )
-    else:
+    elif request.method == "DELETE":
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse(
             {"deleted": count > 0},
+        )
+    else:
+        content = json.loads(request.body)
+        appt = Appointment.objects.filter(id=pk).update(**content)
+        return JsonResponse(
+            {"appointment": appt},
+            ApptEncoder,
+            False,
         )
 
 

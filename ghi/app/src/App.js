@@ -20,7 +20,6 @@ function App() {
   const [models, setModels] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [techs, setTechs] = useState([]);
-  const [appts, setAppts] = useState([]);
 
   const getManufacturers = async () => {
       const makesUrl = "http://localhost:8100/api/manufacturers/"
@@ -58,6 +57,14 @@ function App() {
     }
   }
 
+  const getAppointments = async (apptUrl) => {
+    const response = await fetch(apptUrl);
+    if (response.ok) {
+        const data = await response.json();
+        return data.appointments 
+    }
+}
+
   useEffect(() => {
     getManufacturers();
     getVehicleModels();
@@ -90,9 +97,9 @@ function App() {
                 <Route path="add" element={<TechnicianForm getTechs={getTechnicians} />} />
               </Route>
               <Route path="appointments">
-                <Route index element={<ListAppointments />} />
-                <Route path="add" element={<AppointmentForm techs={techs} />} />
-                <Route path="history" element={<ServiceHistory />} />
+                <Route index element={<ListAppointments getAppts={getAppointments} inventory={inventory}/>} />
+                <Route path="add" element={<AppointmentForm techs={techs} getAppts={getAppointments}/>} />
+                <Route path="history" element={<ServiceHistory getAppts={getAppointments}/>} />
               </Route>
             </Route>
 

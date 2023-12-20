@@ -48,6 +48,8 @@ Team:
      - [x] list all appts (vin, customer name, date, time of appt)
      - [x] service history
      - _todo: client or server-side filtering more appropriate? currently filtering server-side. makes more sense, resource-wise, to not send all data indiscriminately_
+     - [ ] vip status
+     - [ ] appointment status updating
 
 3. sales
    - create models

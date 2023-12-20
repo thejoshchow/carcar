@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
 
-export async function getAppointments() {
-    const apptUrl = "http://localhost:8080/api/appointments/";
-    const response = await fetch(apptUrl);
-    if (response.ok) {
-        const data = await response.json();
-        return data.appointments 
-    }
-    
-}
-
-const ListAppointments = () => {
+const ListAppointments = ({ getAppts }) => {
     const [appts, setAppts] = useState([]);
 
     const getData = async () => {
-        const data = await getAppointments();
+        const apptUrl = "http://localhost:8080/api/appointments/";
+        const data = await getAppts(apptUrl);
         setAppts(data);
     }
 
     useEffect(() => {
         getData();
     }, [])
+
+    const handleCancel = (e, value) => {
+        console.log(e.target.value)
+    }
+
+    const handleComplete = async (e) => {
+        const id = e.target.value
+        const completeUrl = `http://localhost:8080/api/appointments/${id}/finish/`;
+        const fetchOptions = {
+            method: "put",
+        }
+        const response = await fetch(completeUrl, fetchOptions);
+        if (response.ok) {
+            getData();
+            console.log(response + "moved")
+        }
+    }
+
 
     return (
         <div className="container">
@@ -33,7 +42,7 @@ const ListAppointments = () => {
                         <th>Time</th>
                         <th>Reason</th>
                         <th>Technician</th>
-                        <th>Status</th>
+                        <th>Update Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +55,10 @@ const ListAppointments = () => {
                                 <td>{new Date(appt.date_time).toLocaleTimeString()}</td>
                                 <td>{appt.reason}</td>
                                 <td>{appt.technician.name}</td>
-                                <td>{appt.status}</td>
+                                <td>
+                                    <button onClick={handleCancel} value={appt.id} type="button" className="btn btn-danger" style={{marginRight: "10px"}}>Cancel</button>
+                                    <button onClick={handleComplete} value={appt.id} type="button" className="btn btn-success">Complete</button>
+                                </td>
                             </tr>
                         );
                     })}

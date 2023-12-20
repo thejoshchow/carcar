@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import { getAppointments } from "./ListAppointment";
 
-const ServiceHistory = () => {
+const ServiceHistory = ({ getAppts }) => {
     const [appts, setAppts] = useState([]);
 
     const getData = async () => {
-        const apptUrl = "http://localhost:8080/api/appointments/all/";
-        const response = await fetch(apptUrl);
-        if (response.ok) {
-            const data = await response.json();
-            setAppts(data.appointments); 
+        const apptUrl = "http://localhost:8080/api/appointments/history/";
+        const data = await getAppts(apptUrl);
+        setAppts(data); 
         }
-    }
 
     useEffect(() => {
         getData();

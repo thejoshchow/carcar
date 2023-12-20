@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { getAppointments } from './ListAppointment';
 
-const AppointmentForm = ({ techs }) => {
+const AppointmentForm = ({ techs, getAppts }) => {
     const [added, setAdded] = useState(false);
     const [formChange, setFormChange] = useState({
         "custName": "",
@@ -42,7 +41,7 @@ const AppointmentForm = ({ techs }) => {
         const response = await fetch(apptUrl, fetchOptions);
         if (response.ok) {
             setAdded(true);
-            getAppointments();
+            getAppts(apptUrl);
         }
     }
 
