@@ -52,9 +52,37 @@ Team:
      - [x] appointment status updating
 
 3. sales
-   - create models
-   - create api endpoints
-   - create react components
+
+   - [ ] create models
+
+     - [ ] salesperson
+     - [ ] customer
+     - [ ] sale
+     - [ ] autoVO
+
+   - [ ] create api endpoints
+
+     - [ ] list salespeople
+     - [ ] create salesperson
+     - [ ] delete salesperson
+     - [ ] list customers
+     - [ ] create customer
+     - [ ] delete customer
+     - [ ] list sales
+     - [ ] create sale
+     - [ ] delete sale
+
+   - [ ] auto poller
+
+   - [ ] create react components
+
+     - [ ] add salesperson
+     - [ ] list all salespeople
+     - [ ] add customer
+     - [ ] list all customers
+     - [ ] record a new sale
+     - [ ] list all sales
+     - [ ] salesperson history
 
 ## inventory microservice
 
