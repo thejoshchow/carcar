@@ -13,6 +13,7 @@ import ListTechnicians from './service/ListTechnicians';
 import AppointmentForm from './service/AppointmentForm';
 import ListAppointments from './service/ListAppointment';
 import ServiceHistory from './service/ServiceHistory';
+import SalesrepForm from './sales/SalesrepForm';
 
 
 function App() {
@@ -100,6 +101,19 @@ function App() {
                 <Route index element={<ListAppointments getAppts={getAppointments} inventory={inventory}/>} />
                 <Route path="add" element={<AppointmentForm techs={techs} getAppts={getAppointments}/>} />
                 <Route path="history" element={<ServiceHistory getAppts={getAppointments}/>} />
+              </Route>
+            </Route>
+
+            <Route path="sales">
+              <Route index />
+              <Route path="add" />
+              <Route path="salesreps">
+                <Route index />
+                <Route path="add" element={<SalesrepForm />} />
+              </Route>
+              <Route path="customers">
+                <Route index />
+                <Route path="add" />
               </Route>
             </Route>
 

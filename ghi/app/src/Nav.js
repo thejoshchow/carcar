@@ -38,6 +38,12 @@ function Nav() {
             Sales
           </button>
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><Link className="dropdown-item" to="/sales/"><b>Sales</b></Link></li>
+            <li><Link className="dropdown-item" to="/sales/add"> -- Report sale</Link></li>
+            <li><Link className="dropdown-item" to="/sales/salesreps/"><b>Sales Reps</b></Link></li>
+            <li><Link className="dropdown-item" to="/sales/salesreps/add"> -- Add sales rep</Link></li>
+            <li><Link className="dropdown-item" to="/sales/customers/"><b>Customers</b></Link></li>
+            <li><Link className="dropdown-item" to="/sales/customers/add"> -- Add customer</Link></li>
           </ul>
         </div>
         
