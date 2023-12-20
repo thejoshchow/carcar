@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
+import { Button, Modal } from 'react-bootstrap';
 
 const ListAppointments = ({ getAppts }) => {
     const [appts, setAppts] = useState([]);
+    const [show, setShow] = useState(false)
+    
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const getData = async () => {
         const apptUrl = "http://localhost:8080/api/appointments/";
@@ -13,8 +18,16 @@ const ListAppointments = ({ getAppts }) => {
         getData();
     }, [])
 
-    const handleCancel = (e, value) => {
-        
+    const handleCancel = async (e) => {
+        const id = e.target.id;
+        const cancelUrl = `http://localhost:8080/api/appointments/${id}/cancel/`
+        const fetchOptions = {
+            method: "put",
+        }
+        const response = await fetch(cancelUrl, fetchOptions);
+        if (response.ok) {
+            getData();
+        }
     }
 
     const handleComplete = async (e) => {
@@ -57,9 +70,24 @@ const ListAppointments = ({ getAppts }) => {
                                 <td>{appt.reason}</td>
                                 <td>{appt.technician.name}</td>
                                 <td>
-                                    <button onClick={handleCancel} value={appt.id} type="button" className="btn btn-danger" style={{marginRight: "10px"}}>Cancel</button>
-                                    
-                                    <button onClick={handleComplete} value={appt.id} type="button" className="btn btn-success">Complete</button>
+                                    <Button className="btn btn-danger" variant="primary" onClick={handleShow} style={{marginRight: "10px"}}>Cancel</Button>
+                                    <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Are you sure you want to cancel this appointment?</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <p>{appt.customer}</p>
+                                            <p>{appt.vin}</p>
+                                            <p>@</p>
+                                            <p>{new Date(appt.date_time).toLocaleDateString()}</p>
+                                            <p>{new Date(appt.date_time).toLocaleTimeString()}</p>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button variant="secondary" onClick={handleClose}>Close</Button>
+                                            <Button id={appt.id} variant="primary btn-danger" onClick={handleCancel}>Cancel appointment</Button>
+                                        </Modal.Footer>
+                                    </Modal>
+                                    <Button onClick={handleComplete} value={appt.id} type="button" className="btn btn-success">Complete</Button>
                                 </td>
                             </tr>
                         );
