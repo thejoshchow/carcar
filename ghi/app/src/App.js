@@ -20,6 +20,7 @@ import ListCustomers from './sales/ListCustomers';
 import SalesrepHistory from './sales/SalesrepHistory-1';
 import SalesrepHistory2 from './sales/SalesrepHistory-2';
 import ListSales from './sales/ListSales';
+import SaleForm from './sales/SaleForm';
 
 
 function App() {
@@ -148,7 +149,7 @@ function App() {
 
             <Route path="sales">
               <Route index element={<ListSales getSalesHistory={getSalesHistory}/>}/>
-              <Route path="add" />
+              <Route path="add" element={<SaleForm inventory={inventory} salesreps={salesreps} customers={customers} getSales={getSalesHistory} getInventory={getInventory} />}/>
               <Route path="salesreps">
                 <Route index element={<ListSalesreps salesreps={salesreps}/>} />
                 <Route path=":pk" element={<SalesrepHistory getSalesHistory={getSalesHistory}/>}/>

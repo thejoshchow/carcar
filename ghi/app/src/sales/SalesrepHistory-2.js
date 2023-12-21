@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FormSelect, Table } from "react-bootstrap";
 
 
@@ -11,6 +11,7 @@ const SalesrepHistory2 = ( {salesreps, getSalesHistory }) => {
             setHistory(data);
         }
     }
+
 
     return (
         <div>

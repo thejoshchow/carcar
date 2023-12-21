@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 import json
+import requests
 from django.views.decorators.http import require_http_methods
 
 from .models import AutoVO, Salesrep, Customer, Sale
@@ -96,6 +97,7 @@ def list_sales(request, pk=None):
         salesrep = content["salesrep"]
         customer = content["customer"]
         auto = content["auto"]
+        AutoVO.objects.filter(vin=auto).update(sold=True)
 
         def except_return(reason):
             return JsonResponse(
@@ -113,6 +115,8 @@ def list_sales(request, pk=None):
                 SaleEncoder,
                 False,
             )
+        except requests.exceptions.RequestException:
+            return except_return("Sold status update failed")
         except AutoVO.DoesNotExist:
             return except_return("Invalid auto vin")
         except Salesrep.DoesNotExist:

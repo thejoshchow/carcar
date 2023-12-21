@@ -6,6 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class AutoVO(models.Model):
     vin = models.CharField(max_length=17)
     sold = models.BooleanField()
+    synced = models.BooleanField(default=False)
 
     def __str__(self):
         return self.vin

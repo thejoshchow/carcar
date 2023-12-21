@@ -86,13 +86,13 @@ api endpoint accessible at http://localhost:8090
 
 - [x] auto poller
 
-- [ ] create react components
+- [x] create react components
 
   - [x] add salesperson
   - [x] list all salespeople
   - [x] add customer
   - [x] list all customers
-  - [ ] record a new sale
+  - [x] record a new sale
   - [x] list all sales
   - [x] salesperson history
     - two methods to view history by sales rep.
@@ -101,3 +101,5 @@ api endpoint accessible at http://localhost:8090
 
 Explain your models and integration with the inventory
 microservice, here.
+
+- four models

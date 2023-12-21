@@ -5,7 +5,10 @@ from .models import AutoVO, Salesrep, Customer, Sale
 # Register your models here.
 @admin.register(AutoVO)
 class AutoVOAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        "vin",
+        "sold",
+    ]
 
 
 @admin.register(Salesrep)
