@@ -50,7 +50,7 @@ const CreateManufacturer = ({ getManufacturers }) => {
                     </div>
                 </form>
                 <div className={messageClasses} id="success-message">
-                    Vehicle model added
+                    Manufacturer added
                 </div>
             </div>
         </div>
