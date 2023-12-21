@@ -2,6 +2,8 @@
 
 A database application for car dealerships to track inventory, servicing, and sales.
 
+This application consists of three microservices: inventory, service, and sales.
+
 ## Howto
 
 docker is required to run this application  
@@ -18,6 +20,11 @@ for more information on how to install docker, please visit https://docs.docker.
 ## inventory microservice
 
 api endpoints accessible at http://localhost:8100
+| Action | Method | Url |
+|-----------------------|--------|---------------------------------------------------------|
+|List manufacturers |GET |http://localhost:8100/api/manufacturers/ |
+|Create manufacturer |POST |http://localhost:8100/api/manufacturers/ |
+|Delete manufacturer |DELETE |http://localhost:8100/api/manufacturers/:id/ |
 
 - react component
 
