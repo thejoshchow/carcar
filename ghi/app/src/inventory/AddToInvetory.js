@@ -80,7 +80,7 @@ const AutomobileForm = ({ models, getInventory }) => {
                 <button className="btn btn-primary" type="submit">Add automobile</button>
             </form>
             <div className={messageClasses} id="success-message">
-                    Manufacturer added
+                    Vehicle added to inventory
             </div>
         </div>
     )
