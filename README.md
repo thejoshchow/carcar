@@ -19,12 +19,39 @@ for more information on how to install docker, please visit https://docs.docker.
 
 ## inventory microservice
 
-api endpoints accessible at http://localhost:8100
-| Action | Method | Url |
-|-----------------------|--------|---------------------------------------------------------|
-|List manufacturers |GET |http://localhost:8100/api/manufacturers/ |
-|Create manufacturer |POST |http://localhost:8100/api/manufacturers/ |
-|Delete manufacturer |DELETE |http://localhost:8100/api/manufacturers/:id/ |
+api endpoints accessible at http://localhost:8100/api/
+
+**Manufacturers**  
+| Action | Method | URL |
+| ---------------------------- | ------ | -------------------------------------------- |
+| List manufacturers | GET | http://localhost:8100/api/manufacturers/ |
+| Create manufacturer | POST | http://localhost:8100/api/manufacturers/ |
+| Get specific manufacturer | GET | http://localhost:8100/api/manufacturers/:id/ |
+| Update specific manufacturer | PUT | http://localhost:8100/api/manufacturers/:id/ |
+| Delete manufacturer | DELETE | http://localhost:8100/api/manufacturers/:id/ |
+
+- GET /manufacturers/
+  Sample Response  
+   `{
+  "href": "/api/manufacturers/1/",
+  "id": 1,
+  "name": "Chrysler"
+}`
+- POST /manufacturers/
+  - only requires a name
+    Sample Body
+    `{
+  "name": "Chrysler"
+}`
+-
+
+| Acttion                    | Method | URL                                   |
+| -------------------------- | ------ | ------------------------------------- |
+| List vehicle models        | GET    | http://localhost:8100/api/models/     |
+| Create vehicle model       | POST   | http://localhost:8100/api/models/     |
+| Get specific vehicle model | GET    | http://localhost:8100/api/models/:id/ |
+| Update vehicle model       | PUT    | http://localhost:8100/api/models/:id/ |
+| Delete vehicle model       | DELETE | http://localhost:8100/api/models/:id/ |
 
 - react component
 
