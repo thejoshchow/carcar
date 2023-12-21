@@ -1,6 +1,4 @@
-from django.shortcuts import render
 from django.http import JsonResponse
-import requests
 import json
 from django.views.decorators.http import require_http_methods
 
@@ -118,9 +116,13 @@ def delete_customer(request, pk):
 
 
 @require_http_methods(["GET", "POST"])
-def list_sales(request):
+def list_sales(request, pk=None):
     if request.method == "GET":
-        sales = Sale.objects.all()
+        if pk is not None:
+            rep = Salesrep.objects.get(employee_id=pk)
+            sales = Sale.objects.filter(salesrep=rep)
+        else:
+            sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
             SaleEncoder,
@@ -128,7 +130,6 @@ def list_sales(request):
         )
     else:
         content = json.loads(request.body)
-        print(content)
         salesrep = content["salesrep"]
         customer = content["customer"]
         auto = content["auto"]
