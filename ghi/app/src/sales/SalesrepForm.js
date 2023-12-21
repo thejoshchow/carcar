@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Alert, Button, FloatingLabel, Form } from 'react-bootstrap';
 
-const SalesrepForm = () => {
+const SalesrepForm = ({ getSalesreps }) => {
     const [added, setAdded] = useState(false);
     const [formChange, setFormChange] = useState({
         "firstName": '',
@@ -38,6 +38,7 @@ const SalesrepForm = () => {
         const response = await fetch(salesrepUrl, fetchOptions);
         if (response.ok) {
             setAdded(true);
+            getSalesreps();
         }
     }
 

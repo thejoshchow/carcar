@@ -87,8 +87,8 @@ api endpoint accessible at http://localhost:8090
 
 - [ ] create react components
 
-  - [ ] add salesperson
-  - [ ] list all salespeople
+  - [x] add salesperson
+  - [x] list all salespeople
   - [ ] add customer
   - [ ] list all customers
   - [ ] record a new sale
