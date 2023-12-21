@@ -17,6 +17,9 @@ import SalesrepForm from './sales/SalesrepForm';
 import ListSalesreps from './sales/ListSalesreps';
 import CustomerForm from './sales/CustomerForm';
 import ListCustomers from './sales/ListCustomers';
+import SalesrepHistory from './sales/SalesrepHistory-1';
+import SalesrepHistory2 from './sales/SalesrepHistory-2';
+import ListSales from './sales/ListSales';
 
 
 function App() {
@@ -89,6 +92,20 @@ function App() {
     }
   }
 
+  const getSalesHistory = async (pk) => {
+    let historyUrl = ''
+    if (pk) {
+      historyUrl = `http://localhost:8090/api/salesreps/${pk}/history/`
+    } else {
+      historyUrl = 'http://localhost:8090/api/sales/'
+    }
+    const response = await fetch(historyUrl);
+    if (response.ok) {
+        const data = await response.json()
+        return data.sales
+    }
+}
+
   useEffect(() => {
     getManufacturers();
     getVehicleModels();
@@ -130,17 +147,18 @@ function App() {
             </Route>
 
             <Route path="sales">
-              <Route index />
+              <Route index element={<ListSales getSalesHistory={getSalesHistory}/>}/>
               <Route path="add" />
               <Route path="salesreps">
                 <Route index element={<ListSalesreps salesreps={salesreps}/>} />
-                <Route path=":employeeId" />
+                <Route path=":pk" element={<SalesrepHistory getSalesHistory={getSalesHistory}/>}/>
                 <Route path="add" element={<SalesrepForm getSalesreps={getSalesreps} />} />
               </Route>
               <Route path="customers">
                 <Route index element={<ListCustomers customers={customers}/>} />
                 <Route path="add" element={<CustomerForm getCustomers={getCustomers}/>}/>
               </Route>
+              <Route path="history" element={<SalesrepHistory2 salesreps={salesreps} getSalesHistory={getSalesHistory}/>} />
             </Route>
 
             <Route path="*" element={<p>Sorry, this page does not exist</p>} />

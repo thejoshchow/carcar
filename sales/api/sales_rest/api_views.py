@@ -119,8 +119,14 @@ def delete_customer(request, pk):
 def list_sales(request, pk=None):
     if request.method == "GET":
         if pk is not None:
-            rep = Salesrep.objects.get(employee_id=pk)
-            sales = Sale.objects.filter(salesrep=rep)
+            try:
+                rep = Salesrep.objects.get(employee_id=pk)
+                sales = Sale.objects.filter(salesrep=rep)
+            except Salesrep.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Invalid employee id"},
+                    status=400,
+                )
         else:
             sales = Sale.objects.all()
         return JsonResponse(
