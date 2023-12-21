@@ -1,26 +1,32 @@
 # CarCar
 
-Team:
+A database application for car dealerships to track inventory, servicing, and sales.
 
-- Person 1 - Which microservice?
-- Person 2 - Which microservice?
+## Howto
 
-## Design
+docker is required to run this application
+for more information on how to install docker, please visit https://docs.docker.com/desktop/
+
+1. clone repository
+   `git clone https://gitlab.com/hack_reactor/project-beta.git`
+2. build docker containers
+   `docker-compose up`
+3. run docker containers
+   `docker-compose up`
+4. start application by visiting http://localhost:3000/
 
 ## inventory microservice
 
 api endpoints accessible at http://localhost:8100
 
-1. inventory
+- react component
 
-   - react component
-
-   - [x] list of manufacturers
-   - [x] create manufacture
-   - [x] list of vehicle models
-   - [x] create vehicle model
-   - [x] list of automobiles in inventory
-   - [x] add vehicle to inventory
+- [x] list of manufacturers
+- [x] create manufacture
+- [x] list of vehicle models
+- [x] create vehicle model
+- [x] list of automobiles in inventory
+- [x] add vehicle to inventory
 
 ## Service microservice
 
