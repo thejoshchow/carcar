@@ -32,10 +32,10 @@ api endpoints accessible at http://localhost:8100/api/
 
 - GET /manufacturers/
   Sample Response  
-   `{
-  "href": "/api/manufacturers/1/",
-  "id": 1,
-  "name": "Chrysler"
+   `{  
+  "href": "/api/manufacturers/1/",  
+  "id": 1,  
+  "name": "Chrysler"  
 }`
 - POST /manufacturers/
   - only requires a name
