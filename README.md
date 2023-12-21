@@ -73,7 +73,7 @@ api endpoint accessible at http://localhost:8090
   - [x] sale
   - [x] autoVO
 
-- [ ] create api endpoints
+- [x] create api endpoints
 
   - [x] list salespeople
   - [x] create salesperson
@@ -81,21 +81,27 @@ api endpoint accessible at http://localhost:8090
   - [x] list customers
   - [x] create customer
   - [x] delete customer
-  - [ ] list sales
-  - [ ] create sale
-  - [ ] delete sale
+  - [x] list sales
+  - [x] create sale
+  - [x] delete sale
+  - [x] sales rep history
 
 - [x] auto poller
 
-- [ ] create react components
+- [x] create react components
 
-  - [ ] add salesperson
-  - [ ] list all salespeople
-  - [ ] add customer
-  - [ ] list all customers
-  - [ ] record a new sale
-  - [ ] list all sales
-  - [ ] salesperson history
+  - [x] add salesperson
+  - [x] list all salespeople
+  - [x] add customer
+  - [x] list all customers
+  - [x] record a new sale
+  - [x] list all sales
+  - [x] salesperson history
+    - two methods to view history by sales rep.
+      1. clickthrough when viewing list of all reps.
+      2. sales history page with dropdown to select name
 
 Explain your models and integration with the inventory
 microservice, here.
+
+- four models

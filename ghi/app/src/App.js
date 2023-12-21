@@ -13,6 +13,14 @@ import ListTechnicians from './service/ListTechnicians';
 import AppointmentForm from './service/AppointmentForm';
 import ListAppointments from './service/ListAppointment';
 import ServiceHistory from './service/ServiceHistory';
+import SalesrepForm from './sales/SalesrepForm';
+import ListSalesreps from './sales/ListSalesreps';
+import CustomerForm from './sales/CustomerForm';
+import ListCustomers from './sales/ListCustomers';
+import SalesrepHistory from './sales/SalesrepHistory-1';
+import SalesrepHistory2 from './sales/SalesrepHistory-2';
+import ListSales from './sales/ListSales';
+import SaleForm from './sales/SaleForm';
 
 
 function App() {
@@ -20,6 +28,8 @@ function App() {
   const [models, setModels] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [techs, setTechs] = useState([]);
+  const [salesreps, setSalesreps] = useState([]);
+  const [customers, setCustomers] = useState([]);
 
   const getManufacturers = async () => {
       const makesUrl = "http://localhost:8100/api/manufacturers/"
@@ -63,6 +73,38 @@ function App() {
         const data = await response.json();
         return data.appointments 
     }
+  }
+
+  const getSalesreps = async () => {
+    const salesrepUrl = "http://localhost:8090/api/salesreps/";
+    const response = await fetch(salesrepUrl);
+    if (response.ok) {
+      const data = await response.json();
+      setSalesreps(data.salesreps);
+    }
+  }
+
+  const getCustomers = async () => {
+    const customersUrl = "http://localhost:8090/api/customers/";
+    const response = await fetch(customersUrl);
+    if (response.ok) {
+      const data = await response.json();
+      setCustomers(data.customers);
+    }
+  }
+
+  const getSalesHistory = async (pk) => {
+    let historyUrl = ''
+    if (pk) {
+      historyUrl = `http://localhost:8090/api/salesreps/${pk}/history/`
+    } else {
+      historyUrl = 'http://localhost:8090/api/sales/'
+    }
+    const response = await fetch(historyUrl);
+    if (response.ok) {
+        const data = await response.json()
+        return data.sales
+    }
 }
 
   useEffect(() => {
@@ -70,6 +112,8 @@ function App() {
     getVehicleModels();
     getInventory();
     getTechnicians();
+    getSalesreps();
+    getCustomers();
   }, [])
   return (
     <BrowserRouter>
@@ -102,6 +146,23 @@ function App() {
                 <Route path="history" element={<ServiceHistory getAppts={getAppointments}/>} />
               </Route>
             </Route>
+
+            <Route path="sales">
+              <Route index element={<ListSales getSalesHistory={getSalesHistory}/>}/>
+              <Route path="add" element={<SaleForm inventory={inventory} salesreps={salesreps} customers={customers} getSales={getSalesHistory} getInventory={getInventory} />}/>
+              <Route path="salesreps">
+                <Route index element={<ListSalesreps salesreps={salesreps}/>} />
+                <Route path=":pk" element={<SalesrepHistory getSalesHistory={getSalesHistory}/>}/>
+                <Route path="add" element={<SalesrepForm getSalesreps={getSalesreps} />} />
+              </Route>
+              <Route path="customers">
+                <Route index element={<ListCustomers customers={customers}/>} />
+                <Route path="add" element={<CustomerForm getCustomers={getCustomers}/>}/>
+              </Route>
+              <Route path="history" element={<SalesrepHistory2 salesreps={salesreps} getSalesHistory={getSalesHistory}/>} />
+            </Route>
+
+            <Route path="*" element={<p>Sorry, this page does not exist</p>} />
 
         </Routes>
       </div>

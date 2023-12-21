@@ -19,6 +19,7 @@ def get_autos():
     content = json.loads(response.content)
     for auto in content["autos"]:
         AutoVO.objects.update_or_create(
+            vin=auto.get("vin"),
             defaults={
                 "vin": auto.get("vin"),
                 "sold": auto.get("sold"),
