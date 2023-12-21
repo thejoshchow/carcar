@@ -26,6 +26,7 @@ api endpoints accessible at http://localhost:8100
 
 todo:
 
+- [ ] add page to search and show service history by vin
 - [x] adjust api delete functions so that they actually return 400 status if invalid ids
 
 api endpoinst accessible at http://localhost:8080
