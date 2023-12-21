@@ -4,7 +4,7 @@ A database application for car dealerships to track inventory, servicing, and sa
 
 This application consists of three microservices: inventory, service, and sales.
 
-[img](/images/CarCar.gif)
+![img](/images/CarCar.gif)
 
 ## Getting started
 
@@ -164,95 +164,346 @@ api endpoints accessible at http://localhost:8100/api/
 }
 ```
 
-- react component
-
-- [x] list of manufacturers
-- [x] create manufacture
-- [x] list of vehicle models
-- [x] create vehicle model
-- [x] list of automobiles in inventory
-- [x] add vehicle to inventory
-
 ## Service microservice
 
-todo:
+api endpoinst accessible at http://localhost:8080/api/
 
-- [x] adjust api delete functions so that they actually return 400 status if invalid ids
+**technician**
 
-api endpoinst accessible at http://localhost:8080
+| Action           | Method | URL               |
+| ---------------- | ------ | ----------------- |
+| List technicians | GET    | /technicians/     |
+| Create techs     | POST   | /technicians/     |
+| Delete tech      | DELETE | /technicians/:id/ |
 
-- [x] create models
+- create tech:
 
-  - [x] technician model
-  - [x] autoVO
-  - [x] appointment model
+```
+{
+	"first_name": "jon",
+	"last_name": "doe",
+	"employee_id": "1"
+}
+```
 
-- [x] create api endpoints
+- list techs return:
 
-  - [x] list techs
-  - [x] create tech
-  - [x] delete tech
-  - [x] list appts
-  - [x] create appt
-  - [x] delete appt
-  - [x] set appt status to cancelled
-  - [x] set appt status to finished
+```
+{
+	"technicians": [
+		{
+			"first_name": "jon",
+			"last_name": "doe",
+			"employee_id": "1"
+		}
+	]
+}
+```
 
-- [x] auto poller
+- delete tech return:
 
-- [x] create react components
-  - [x] add a tech
-  - [x] list all techs (employee id, name)
-  - [x] create service appt
-  - [x] list all appts (vin, customer name, date, time of appt)
-  - [x] service history
-  - _todo: client or server-side filtering more appropriate? currently filtering server-side. makes more sense, resource-wise, to not send all data indiscriminately_
-  - [x] vip status
-  - [x] appointment status updating
+```
+{
+	"deleted": true
+}
+```
+
+**appointments**
+
+| Action             | Method | URL                       |
+| ------------------ | ------ | ------------------------- |
+| List appointments  | GET    | /appointments/            |
+| Add appointment    | POST   | /appointments/            |
+| Show specific appt | GET    | /appointments/:id/        |
+| Edit appt          | PUT    | /appointments/:id/        |
+| Delete appt        | DELETE | /appointments/:id/        |
+| Cancel appt        | PUT    | /appointments/:id/cancel/ |
+| Finish appt        | PUT    | /appointments/:id/finish/ |
+| List appt history  | GET    | /appointments/history/    |
+
+- list appointments (only upcoming, scheduled) and history (includes only cancelled and completed) return:
+
+```
+{
+	"appointments": [
+		{
+			"id": 23,
+			"date_time": "2023-12-27T19:56:00+00:00",
+			"reason": "aoeu",
+			"status": "scheduled",
+			"vin": "1VS30NC117RXZ5SNM",
+			"customer": "test",
+			"vip": true,
+			"technician": {
+				"name": "josh chow",
+				"employee_id": "1"
+			}
+		}
+	]
+}
+```
+
+- Show specific, create, cancel, finish, return:
+
+```
+{
+	"appointment": {
+		"id": 5,
+		"date_time": "2023-12-19T18:00:00+00:00",
+		"reason": "testing",
+		"status": "cancelled",
+		"vin": "something",
+		"customer": "jon",
+		"technician": {
+			"name": "josh chow",
+			"employee_id": "1"
+		}
+	}
+}
+```
+
+- delete appt return:
+
+```
+{
+	"deleted": true
+}
+```
 
 Explain your models and integration with the inventory
 microservice, here.
 
 ## Sales microservice
 
-api endpoint accessible at http://localhost:8090
+4 models:
 
-- [x] create models
+- auto (inventory) value object
+- salesrep
+- customer
+- sale
+  - one to one relation to auto vo
+  - related to salesrep
+  - related to customer
 
-  - [x] salesperson
-  - [x] customer
-  - [x] sale
-  - [x] autoVO
+api endpoint accessible at http://localhost:8090/api/
 
-- [x] create api endpoints
+**salesperson (sales rep)**
+| Action | Method | URL |
+| ---------------- | ------ | ----------------- |
+| List sales reps | GET | /salesreps/ |
+| Create sales rep | POST | /salesrep/ |
+| Delete sales rep | DELETE | /salesrep/:id/ |
+| List sales rep sales history | GET | /salesrep/:id/history/ |
 
-  - [x] list salespeople
-  - [x] create salesperson
-  - [x] delete salesperson
-  - [x] list customers
-  - [x] create customer
-  - [x] delete customer
-  - [x] list sales
-  - [x] create sale
-  - [x] delete sale
-  - [x] sales rep history
+- list sales rep return:
 
-- [x] auto poller
+```
+{
+	"salesreps": [
+		{
+			"first_name": "test",
+			"last_name": "test",
+			"employee_id": "test"
+		}
+	]
+}
+```
 
-- [x] create react components
+- create sales rep:
 
-  - [x] add salesperson
-  - [x] list all salespeople
-  - [x] add customer
-  - [x] list all customers
-  - [x] record a new sale
-  - [x] list all sales
-  - [x] salesperson history
-    - two methods to view history by sales rep.
-      1. clickthrough when viewing list of all reps.
-      2. sales history page with dropdown to select name
+```
+{
+	"first_name": "jon",
+	"last_name": "doe",
+	"employee_id": "1"
+}
+```
 
-Explain your models and integration with the inventory
-microservice, here.
+- create sales rep return:
 
-- four models
+```
+{
+	"salesrep": {
+		"first_name": "josh",
+		"last_name": "chow",
+		"employee_id": "1"
+	}
+}
+```
+
+- delete sales rep return:
+
+```
+{
+	"deleted": "true"
+}
+```
+
+- sales rep history return:
+
+```
+{
+	"sales": [
+		{
+      "id": 11,
+			"price": "800.00",
+			"salesrep": {
+				"first_name": "josh",
+				"last_name": "chow",
+				"employee_id": "1"
+			},
+			"customer": {
+				"id": 11,
+				"first_name": "test",
+				"last_name": "test",
+				"address": "test test, test, test test",
+				"phone_number": "None"
+			},
+			"auto": {
+				"vin": "ABETOC123H123H2",
+				"sold": true
+			}
+    }
+  ]
+}
+```
+
+**customer**
+| Action | Method | URL |
+| ---------------- | ------ | ----------------- |
+| List customers | GET | /customers/ |
+| Create customers | POST | /customers/ |
+| Delete customers | DELETE | /customers/:id/ |
+
+- list customers return:
+
+```
+{
+	"customers": [
+		{
+			"id": 11,
+			"first_name": "test",
+			"last_name": "test",
+			"address": "test test, test, test test",
+			"phone_number": "None"
+		}
+	]
+}
+```
+
+- create customer:
+
+```
+{
+	"first_name": "delete",
+	"last_name": "me",
+	"address": "denver",
+	"phone_number": "1234567890"
+}
+```
+
+- create customer return:
+
+```
+{
+	"customer": {
+		"id": 7,
+		"first_name": "delete",
+		"last_name": "me",
+		"address": "denver",
+		"phone_number": "1234567890"
+	}
+}
+```
+
+- delete customer return:
+
+```
+{
+	"deleted": "true"
+}
+```
+
+**sale**
+| Action | Method | URL |
+| ---------------- | ------ | ----------------- |
+| List sales | GET | /sales/ |
+| Create sale | POST | /sales/ |
+| Delete sale | DELETE | /sales/:id/ |
+
+- list sales return:
+
+```
+{
+	"sales": [
+		{
+      "id": 11,
+			"price": "800.00",
+			"salesrep": {
+				"first_name": "josh",
+				"last_name": "chow",
+				"employee_id": "1"
+			},
+			"customer": {
+				"id": 11,
+				"first_name": "test",
+				"last_name": "test",
+				"address": "test test, test, test test",
+				"phone_number": "None"
+			},
+			"auto": {
+				"vin": "ABETOC123H123H2",
+				"sold": true
+			}
+    }
+  ]
+}
+```
+
+- create sale:
+
+```
+  {
+  "price": "200000.48",
+  "salesrep": "1",
+  "customer": "1",
+  "auto": "172839582449581"
+  }
+```
+
+- create sale return:
+
+```
+{
+	"sale": {
+		{
+      "id": 11,
+			"price": "800.00",
+			"salesrep": {
+				"first_name": "josh",
+				"last_name": "chow",
+				"employee_id": "1"
+			},
+			"customer": {
+				"id": 11,
+				"first_name": "test",
+				"last_name": "test",
+				"address": "test test, test, test test",
+				"phone_number": "None"
+			},
+			"auto": {
+				"vin": "ABETOC123H123H2",
+				"sold": true
+			}
+    }
+  }
+}
+```
+
+- delete sale return:
+
+```
+{
+	"deleted": true
+}
+```
