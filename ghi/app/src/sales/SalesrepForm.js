@@ -42,10 +42,10 @@ const SalesrepForm = ({ getSalesreps }) => {
         }
     }
 
-    let messageClasses = 'alert alert-success d-none mb-0';
+    let messageClasses = 'd-none mb-0';
     let formClasses = '';
     if (added) {
-        messageClasses = 'alert alert-success mb-0';
+        messageClasses = 'mb-0';
         formClasses = 'd-none';
     }
 
@@ -64,7 +64,7 @@ const SalesrepForm = ({ getSalesreps }) => {
                 </FloatingLabel>
                 <Button type="submit" varient="primary">Submit</Button>
             </Form>
-            <Alert className={messageClasses} >
+            <Alert className={messageClasses} variant="success">
                 Sales rep added
             </Alert>
         </div>

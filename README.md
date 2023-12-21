@@ -89,8 +89,8 @@ api endpoint accessible at http://localhost:8090
 
   - [x] add salesperson
   - [x] list all salespeople
-  - [ ] add customer
-  - [ ] list all customers
+  - [x] add customer
+  - [x] list all customers
   - [ ] record a new sale
   - [ ] list all sales
   - [ ] salesperson history
