@@ -31,7 +31,7 @@ class Customer(models.Model):
 
 
 class Sale(models.Model):
-    auto = models.ForeignKey(
+    auto = models.OneToOneField(
         AutoVO,
         related_name="sales",
         on_delete=models.PROTECT,
