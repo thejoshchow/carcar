@@ -3,52 +3,9 @@ import json
 from django.views.decorators.http import require_http_methods
 
 from .models import AutoVO, Salesrep, Customer, Sale
-from common.json import ModelEncoder
+from .encoders import SaleEncoder, SalesrepEncoder, CustomerEncoder
 
 # Create your views here.
-
-
-class SalesrepEncoder(ModelEncoder):
-    model = Salesrep
-    properties = [
-        "first_name",
-        "last_name",
-        "employee_id",
-    ]
-
-
-class CustomerEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "id",
-        "first_name",
-        "last_name",
-        "address",
-        "phone_number",
-    ]
-
-
-class SaleEncoder(ModelEncoder):
-    model = Sale
-    properties = [
-        "id",
-        "price",
-        "salesrep",
-        "customer",
-    ]
-
-    encoders = {
-        "customer": CustomerEncoder(),
-        "salesrep": SalesrepEncoder(),
-    }
-
-    def get_extra_data(self, o):
-        return {
-            "auto": {
-                "vin": o.auto.vin,
-                "sold": o.auto.sold,
-            }
-        }
 
 
 @require_http_methods(["GET", "POST"])
