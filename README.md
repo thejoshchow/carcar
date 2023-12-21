@@ -4,14 +4,14 @@ A database application for car dealerships to track inventory, servicing, and sa
 
 ## Howto
 
-docker is required to run this application
+docker is required to run this application  
 for more information on how to install docker, please visit https://docs.docker.com/desktop/
 
-1. clone repository
+1. clone repository  
    `git clone https://gitlab.com/hack_reactor/project-beta.git`
-2. build docker containers
+2. build docker containers  
    `docker-compose up`
-3. run docker containers
+3. run docker containers  
    `docker-compose up`
 4. start application by visiting http://localhost:3000/
 
